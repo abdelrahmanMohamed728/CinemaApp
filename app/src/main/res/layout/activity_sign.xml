@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Sign.SignActivity"
+    android:background="@drawable/signbackground">
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SignUp"
+        android:id="@+id/SignUpBtn1"
+        android:layout_alignParentBottom="true"
+        android:background="#320c58"
+        android:textColor="#fff"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="LogIn"
+        android:id="@+id/SignInBtn1"
+        android:layout_above="@id/SignUpBtn1"
+        android:background="#efedf1"
+        />
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/glasses"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        />
+</RelativeLayout>
