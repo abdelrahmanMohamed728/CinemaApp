@@ -5,7 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Sign.SignActivity"
-    android:background="@drawable/signbackground">
+    android:background="@drawable/background">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,11 +27,5 @@
         android:layout_above="@id/SignUpBtn1"
         android:background="#efedf1"
         />
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:src="@drawable/glasses"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        />
+    </RelativeLayout>
 </RelativeLayout>

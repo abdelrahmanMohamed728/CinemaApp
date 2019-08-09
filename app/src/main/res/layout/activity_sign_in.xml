@@ -5,20 +5,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Sign.SignInActivity"
+    android:background="@drawable/background"
     android:orientation="vertical">
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#444B3BD2">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email"
+        android:hint="E-mail"
         android:id="@+id/SignInEmail"
+        android:textColorHint="#fff"
         android:layout_marginTop="30dp"
+        android:textColor="#fff"
+        android:backgroundTint="#fff"
         android:layout_marginHorizontal="20dp"/>
     <EditText
+        android:textColor="#fff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Password"
         android:id="@+id/SignInPassword"
+        android:textColorHint="#fff"
+        android:backgroundTint="#fff"
         android:layout_marginTop="30dp"
         android:layout_marginHorizontal="20dp"
         android:inputType="textPassword"/>
@@ -29,5 +40,7 @@
         android:layout_marginTop="80dp"
         android:id="@+id/SignInBtn2"
         android:text="Sign In"
+        android:background="@drawable/signbutton"
         />
+    </LinearLayout>
 </LinearLayout>

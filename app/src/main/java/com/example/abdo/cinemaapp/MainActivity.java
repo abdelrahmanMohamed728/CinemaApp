@@ -19,7 +19,8 @@ public class MainActivity extends AppCompatActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager1.setAdapter(adapter);
         tab1.setupWithViewPager(viewPager1);
-        tab1.getTabAt(0).setIcon(R.drawable.home);
+        tab1.getTabAt(0).setIcon(R.drawable.fire);
         tab1.getTabAt(1).setIcon(R.drawable.search);
+        tab1.getTabAt(2).setIcon(R.drawable.user);
     }
 }

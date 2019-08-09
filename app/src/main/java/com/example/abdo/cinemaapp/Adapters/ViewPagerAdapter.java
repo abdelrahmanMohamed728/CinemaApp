@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.example.abdo.cinemaapp.HomeFragment;
+import com.example.abdo.cinemaapp.ProfileFragment;
 import com.example.abdo.cinemaapp.SearchFragment;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
@@ -18,12 +19,14 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
             return new HomeFragment();
         else if(i==1)
             return new SearchFragment();
+        else if (i==2)
+            return new ProfileFragment();
         else
             return null;
     }
 
     @Override
     public int getCount() {
-        return 2;
+        return 3;
     }
 }
