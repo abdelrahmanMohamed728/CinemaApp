@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:text="Trending Artists"
-        android:textColor="#000"
+        android:textColor="#fff"
         android:layout_marginTop="10dp"
         />
     <android.support.v7.widget.RecyclerView

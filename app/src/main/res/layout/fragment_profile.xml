@@ -6,9 +6,33 @@
     android:orientation="vertical"
     tools:context=".ProfileFragment"
     android:background="@drawable/searchbackground">
-
+   <de.hdodenhof.circleimageview.CircleImageView
+       android:layout_width="1200dp"
+       android:layout_height="120dp"
+       android:layout_gravity="center"
+       android:layout_marginTop="20dp"
+       android:id="@+id/profileImage"
+       android:src="@drawable/glasses"/>
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:gravity="center"
+       android:layout_marginTop="20dp"
+       android:textSize="30sp"
+       android:textStyle="bold"
+       android:textColor="#fff"
+       android:id="@+id/profileUsername"/>
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="10dp"
+       android:textColor="#fff"
+       android:textSize="20sp"
+       android:text="Liked List"
+       android:layout_marginLeft="10dp"/>
    <ListView
        android:layout_width="match_parent"
+       android:layout_marginTop="10dp"
        android:layout_height="0dp"
        android:layout_weight="1"
        android:id="@+id/profileListView">

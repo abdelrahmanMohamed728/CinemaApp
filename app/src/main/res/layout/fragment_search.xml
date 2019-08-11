@@ -1,72 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SearchFragment"
-    android:orientation="vertical"
     android:background="@drawable/searchbackground"
     >
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/linear1">
         <EditText
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="10dp"
+            android:drawableLeft="@drawable/search1"
+            android:drawablePadding="20dp"
+            android:paddingLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/searchtext"
             android:textSize="20sp"
-            android:backgroundTint="#fff"
             android:textColor="#fff"
-            android:textColorHint="#fff"
+            android:textColorHint="#bcb4d1"
             android:layout_height="match_parent"
-            android:layout_weight="4"
             android:id="@+id/searchEditText"
             android:hint="Search"/>
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:drawableStart="@drawable/searchbtn"
-            android:id="@+id/searchBtn"
-            />
     </LinearLayout>
- <RadioGroup
-     android:layout_width="match_parent"
-     android:layout_height="0dp"
-     android:layout_marginTop="10dp"
-     android:layout_weight="1"
-     android:orientation="horizontal"
-     android:id="@+id/radioGroup1">
-     <RadioButton
-         android:layout_width="0dp"
-         android:layout_weight="1"
-         android:layout_height="wrap_content"
-         android:text="Movie"
-         android:textColor="#fff"
-         android:id="@+id/radioButtonMovie"/>
-     <RadioButton
-         android:layout_width="0dp"
-         android:layout_weight="1"
-         android:layout_height="wrap_content"
-         android:text="Tv Show"
-         android:textColor="#fff"
-         android:id="@+id/radioButtonShow"/>
-     <RadioButton
-         android:layout_width="0dp"
-         android:layout_weight="1"
-         android:layout_height="wrap_content"
-         android:text="Artist"
-         android:textColor="#fff"
-
-         android:id="@+id/radioButtonPerson"
-         />
- </RadioGroup>
     <ListView
         android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_height="0dp"
-        android:layout_weight="7"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
         android:id="@+id/listViewSearch"
-
+         android:layout_below="@id/linear1"
         ></ListView>
-</LinearLayout>
+</RelativeLayout>

@@ -4,6 +4,8 @@ package com.example.abdo.cinemaapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,23 +51,22 @@ public class SearchFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View v= inflater.inflate(R.layout.fragment_search, container, false);
-        radioMovie = v.findViewById(R.id.radioButtonMovie);
         searchEditText = v.findViewById(R.id.searchEditText);
-        radioShow = v.findViewById(R.id.radioButtonShow);
-        radioPerson = v.findViewById(R.id.radioButtonPerson);
+
         listView = v.findViewById(R.id.listViewSearch);
-        searchBtn = v.findViewById(R.id.searchBtn);
-        radioGroup = v.findViewById(R.id.radioGroup1);
         final String API_KEY=getString(R.string.API_KEY);
-        searchBtn.setOnClickListener(new View.OnClickListener() {
+        searchEditText.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
-                if (radioGroup.getCheckedRadioButtonId()==radioMovie.getId())
-                {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
                     list = new ArrayList<>();
                     LoadData("https://api.themoviedb.org/3/search/movie?api_key="+API_KEY+"&language=en-US&query="+searchEditText.getText().toString()+"&page=1");
-                    adapter = new SearchAdapter(getContext(),list);
-                    listView.setAdapter(adapter);
+
                     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -74,13 +75,10 @@ public class SearchFragment extends Fragment {
                             startActivity(intent);
                         }
                     });
-                }
-                else if (radioGroup.getCheckedRadioButtonId()==radioShow.getId())
-                {
-                    list = new ArrayList<>();
+
+
                     LoadData1("https://api.themoviedb.org/3/search/tv?api_key="+API_KEY+"&language=en-US&query="+searchEditText.getText().toString()+"&page=1");
-                    adapter = new SearchAdapter(getContext(),list);
-                    listView.setAdapter(adapter);
+
                     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -89,14 +87,14 @@ public class SearchFragment extends Fragment {
                             startActivity(intent);
                         }
                     });
-                }
-                else
-                {
 
-                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
-
         return v;
     }
     public void LoadData(String url)
@@ -112,10 +110,11 @@ public class SearchFragment extends Fragment {
                         JSONObject object = array.getJSONObject(i);
                         String id = object.getString("id");
                         String name = object.getString("title");
-                        String img = "https://image.tmdb.org/t/p/original"+object.getString("poster_path");
+                        String img = "https://image.tmdb.org/t/p/w200"+object.getString("poster_path");
                         list.add(new Search(id,name,img));
-                        adapter.notifyDataSetChanged();
+
                     }
+
                 }
                 catch (Exception e)
                 {
@@ -146,10 +145,11 @@ public class SearchFragment extends Fragment {
                         JSONObject object = array.getJSONObject(i);
                         String id = object.getString("id");
                         String name = object.getString("name");
-                        String img = "https://image.tmdb.org/t/p/original"+object.getString("poster_path");
+                        String img = "https://image.tmdb.org/t/p/w200"+object.getString("poster_path");
                         list.add(new Search(id,name,img));
-                        adapter.notifyDataSetChanged();
                     }
+                    adapter = new SearchAdapter(getContext(),list);
+                    listView.setAdapter(adapter);
                 }
                 catch (Exception e)
                 {

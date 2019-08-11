@@ -78,7 +78,7 @@ public class HomeFragment extends Fragment {
                     for (int i =0;i<5;i++)
                     {
                         JSONObject object = array.getJSONObject(i);
-                        Trend movieTrend = new Trend(object.getString("id"),"https://image.tmdb.org/t/p/original"+object.getString("profile_path"),"movie");
+                        Trend movieTrend = new Trend(object.getString("id"),"https://image.tmdb.org/t/p/w200"+object.getString("profile_path"),"movie");
                         personArrayList.add(movieTrend);
                         personTrendAdapter.notifyDataSetChanged();
                     }
@@ -110,7 +110,7 @@ public class HomeFragment extends Fragment {
                     for (int i =0;i<5;i++)
                     {
                         JSONObject object = array.getJSONObject(i);
-                        Trend movieTrend = new Trend(object.getString("id"),"https://image.tmdb.org/t/p/original"+object.getString("poster_path"),"movie");
+                        Trend movieTrend = new Trend(object.getString("id"),"https://image.tmdb.org/t/p/w200"+object.getString("poster_path"),"movie");
                         movieArrayList.add(movieTrend);
                         movieTrendAdapter.notifyDataSetChanged();
                     }
@@ -142,7 +142,7 @@ public class HomeFragment extends Fragment {
                     for (int i =0;i<5;i++)
                     {
                         JSONObject object = array.getJSONObject(i);
-                        Trend movieTrend = new Trend(object.getString("id"),"https://image.tmdb.org/t/p/original"+object.getString("poster_path"),"show");
+                        Trend movieTrend = new Trend(object.getString("id"),"https://image.tmdb.org/t/p/w200"+object.getString("poster_path"),"show");
                         showArrayList.add(movieTrend);
                         showTrendAdapter.notifyDataSetChanged();
                     }
