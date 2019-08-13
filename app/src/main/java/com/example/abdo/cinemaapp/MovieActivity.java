@@ -120,7 +120,7 @@ public class MovieActivity extends AppCompatActivity {
                    revenue.setText("Revenue : "+response.getString("revenue")+"$");
                    name.setText(response.getString("original_title"));
                    rating.setText("Movie Rating : "+response.getString("vote_average"));
-                    Picasso.with(MovieActivity.this).load("https://image.tmdb.org/t/p/original"+response.getString("poster_path")).into(img1);
+                    Picasso.with(MovieActivity.this).load("https://image.tmdb.org/t/p/w500"+response.getString("poster_path")).into(img1);
                 }
                 catch (Exception e)
                 {

@@ -24,8 +24,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.abdo.cinemaapp.Adapters.SearchAdapter;
+import com.example.abdo.cinemaapp.General.Favorite;
 import com.example.abdo.cinemaapp.General.Search;
 import com.example.abdo.cinemaapp.General.Trend;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -33,61 +36,49 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class SearchFragment extends Fragment {
-     RadioButton radioMovie;
-     RadioButton radioShow;
-     RadioButton radioPerson;
      ListView listView;
-     RadioGroup radioGroup;
      ArrayList<Search>list;
      SearchAdapter adapter;
      EditText searchEditText;
-     Button searchBtn;
     public SearchFragment() {
     }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View v= inflater.inflate(R.layout.fragment_search, container, false);
         searchEditText = v.findViewById(R.id.searchEditText);
-
         listView = v.findViewById(R.id.listViewSearch);
         final String API_KEY=getString(R.string.API_KEY);
         searchEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
                     list = new ArrayList<>();
                     LoadData("https://api.themoviedb.org/3/search/movie?api_key="+API_KEY+"&language=en-US&query="+searchEditText.getText().toString()+"&page=1");
-
-                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    LoadData1("https://api.themoviedb.org/3/search/tv?api_key="+API_KEY+"&language=en-US&query="+searchEditText.getText().toString()+"&page=1");
+                    adapter = new SearchAdapter(getContext(),list);
+                 listView.setAdapter(adapter);
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Search f = list.get(position);
+                        if (f.getType().equals("movie"))
+                        {
                             Intent intent = new Intent(getActivity(),MovieActivity.class);
-                            intent.putExtra("id",list.get(position).getId());
+                            intent.putExtra("id",f.getId());
                             startActivity(intent);
                         }
-                    });
-
-
-                    LoadData1("https://api.themoviedb.org/3/search/tv?api_key="+API_KEY+"&language=en-US&query="+searchEditText.getText().toString()+"&page=1");
-
-                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        else
+                        {
                             Intent intent = new Intent(getActivity(),TvShowActivity.class);
                             intent.putExtra("id",list.get(position).getId());
                             startActivity(intent);
                         }
-                    });
-
+                    }
+                });
             }
 
             @Override
@@ -111,10 +102,9 @@ public class SearchFragment extends Fragment {
                         String id = object.getString("id");
                         String name = object.getString("title");
                         String img = "https://image.tmdb.org/t/p/w200"+object.getString("poster_path");
-                        list.add(new Search(id,name,img));
-
+                        list.add(new Search(id,name,img,"movie"));
+                        adapter.notifyDataSetChanged();
                     }
-
                 }
                 catch (Exception e)
                 {
@@ -126,7 +116,6 @@ public class SearchFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error)
             {
-
             }
         });
         RequestQueue queue = Volley.newRequestQueue(getContext());
@@ -146,10 +135,9 @@ public class SearchFragment extends Fragment {
                         String id = object.getString("id");
                         String name = object.getString("name");
                         String img = "https://image.tmdb.org/t/p/w200"+object.getString("poster_path");
-                        list.add(new Search(id,name,img));
+                        list.add(new Search(id,name,img,"show"));
+                        adapter.notifyDataSetChanged();
                     }
-                    adapter = new SearchAdapter(getContext(),list);
-                    listView.setAdapter(adapter);
                 }
                 catch (Exception e)
                 {
@@ -161,7 +149,6 @@ public class SearchFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error)
             {
-
             }
         });
         RequestQueue queue = Volley.newRequestQueue(getContext());

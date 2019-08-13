@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import com.example.abdo.cinemaapp.AddFragment;
 import com.example.abdo.cinemaapp.HomeFragment;
 import com.example.abdo.cinemaapp.ProfileFragment;
 import com.example.abdo.cinemaapp.SearchFragment;
@@ -21,12 +22,14 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
             return new SearchFragment();
         else if (i==2)
             return new ProfileFragment();
+        else if (i==3)
+            return new AddFragment();
         else
             return null;
     }
 
     @Override
     public int getCount() {
-        return 3;
+        return 4;
     }
 }

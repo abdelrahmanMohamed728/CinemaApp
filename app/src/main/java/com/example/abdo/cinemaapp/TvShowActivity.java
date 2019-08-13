@@ -115,7 +115,7 @@ public class TvShowActivity extends AppCompatActivity {
                     episodes.setText("Number of Episodes : "+response.getString("number_of_episodes"));
                     name.setText(response.getString("name"));
                     rating.setText("Rating : "+response.getString("vote_average"));
-                    Picasso.with(TvShowActivity.this).load("https://image.tmdb.org/t/p/original"+response.getString("poster_path")).into(img1);
+                    Picasso.with(TvShowActivity.this).load("https://image.tmdb.org/t/p/w500"+response.getString("poster_path")).into(img1);
                 }
                 catch (Exception e)
                 {

@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -24,7 +25,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.example.abdo.cinemaapp.Adapters.FavoriteAdapter;
 import com.example.abdo.cinemaapp.Adapters.SearchAdapter;
+import com.example.abdo.cinemaapp.General.Favorite;
 import com.example.abdo.cinemaapp.General.Search;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -45,6 +48,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -62,11 +66,11 @@ public class ProfileFragment extends Fragment {
     private Uri filePath;
 
     TextView username;
-    ArrayList<Search>list;
+    List<Favorite> list;
     ListView listView;
     FirebaseStorage storage;
     StorageReference storageReference;
-    SearchAdapter adapter;
+    FavoriteAdapter adapter;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
     @Override
@@ -136,13 +140,31 @@ public class ProfileFragment extends Fragment {
 
             }
         });
-        adapter = new SearchAdapter(getContext(),list);
+        adapter = new FavoriteAdapter(getContext(),list);
         listView.setAdapter(adapter);
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 chooseImage();
 
+            }
+        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Favorite f = list.get(position);
+                if (f.getType().equals("movie"))
+                {
+                    Intent intent = new Intent(getActivity(),MovieActivity.class);
+                    intent.putExtra("id",f.getId());
+                    startActivity(intent);
+                }
+                else
+                {
+                    Intent intent = new Intent(getActivity(),TvShowActivity.class);
+                    intent.putExtra("id",list.get(position).getId());
+                    startActivity(intent);
+                }
             }
         });
         return v;
@@ -157,7 +179,7 @@ public class ProfileFragment extends Fragment {
                     String id = response.getString("id");
                     String name = response.getString("name");
                     String img = "https://image.tmdb.org/t/p/w200"+response.getString("poster_path");
-                    list.add(new Search(id,name,img));
+                    list.add(new Favorite(id,name,img,"show"));
                     adapter.notifyDataSetChanged();
                 }
                 catch (Exception e)
@@ -174,7 +196,6 @@ public class ProfileFragment extends Fragment {
             }
         });
         RequestQueue queue = Volley.newRequestQueue(getContext());
-
         queue.add(request);
     }
     public void LoadData(String url)
@@ -187,7 +208,7 @@ public class ProfileFragment extends Fragment {
                         String id = response.getString("id");
                         String name = response.getString("original_title");
                         String img = "https://image.tmdb.org/t/p/w200"+response.getString("poster_path");
-                        list.add(new Search(id,name,img));
+                        list.add(new Favorite(id,name,img,"movie"));
                         adapter.notifyDataSetChanged();
                 }
                 catch (Exception e)
