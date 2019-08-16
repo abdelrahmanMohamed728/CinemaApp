@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.abdo.cinemaapp">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
-        android:largeHeap="true"
-        android:icon="@drawable/starter"
         android:hardwareAccelerated="false"
+        android:icon="@drawable/starter"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@drawable/starter"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -24,7 +26,8 @@
         <activity android:name=".MovieActivity" />
         <activity android:name=".TvShowActivity" />
         <activity android:name=".Sign.SignUpActivity" />
-        <activity android:name=".Sign.SignInActivity"></activity>
+        <activity android:name=".Sign.SignInActivity" />
+        <activity android:name=".FriendActivity"></activity>
     </application>
 
 </manifest>

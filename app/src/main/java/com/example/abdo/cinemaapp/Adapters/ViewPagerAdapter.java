@@ -4,10 +4,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.example.abdo.cinemaapp.AddFragment;
-import com.example.abdo.cinemaapp.HomeFragment;
-import com.example.abdo.cinemaapp.ProfileFragment;
-import com.example.abdo.cinemaapp.SearchFragment;
+import com.example.abdo.cinemaapp.Fragments.AddFragment;
+import com.example.abdo.cinemaapp.Fragments.HomeFragment;
+import com.example.abdo.cinemaapp.Fragments.ProfileFragment;
+import com.example.abdo.cinemaapp.Fragments.RecommendFragment;
+import com.example.abdo.cinemaapp.Fragments.SearchFragment;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     public ViewPagerAdapter(FragmentManager fm) {
@@ -23,6 +24,8 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
         else if (i==2)
             return new ProfileFragment();
         else if (i==3)
+            return new RecommendFragment();
+        else if (i==4)
             return new AddFragment();
         else
             return null;
@@ -30,6 +33,6 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 4;
+        return 5;
     }
 }

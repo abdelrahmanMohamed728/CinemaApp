@@ -1,4 +1,4 @@
-package com.example.abdo.cinemaapp;
+package com.example.abdo.cinemaapp.Fragments;
 
 
 import android.os.Bundle;
@@ -18,6 +18,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.abdo.cinemaapp.Adapters.TrendAdapter;
 import com.example.abdo.cinemaapp.General.Trend;
+import com.example.abdo.cinemaapp.R;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

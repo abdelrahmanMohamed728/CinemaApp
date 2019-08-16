@@ -1,4 +1,4 @@
-package com.example.abdo.cinemaapp;
+package com.example.abdo.cinemaapp.Fragments;
 
 
 import android.content.Intent;
@@ -27,6 +27,9 @@ import com.example.abdo.cinemaapp.Adapters.SearchAdapter;
 import com.example.abdo.cinemaapp.General.Favorite;
 import com.example.abdo.cinemaapp.General.Search;
 import com.example.abdo.cinemaapp.General.Trend;
+import com.example.abdo.cinemaapp.MovieActivity;
+import com.example.abdo.cinemaapp.R;
+import com.example.abdo.cinemaapp.TvShowActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 

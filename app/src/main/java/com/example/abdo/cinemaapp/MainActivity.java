@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         tab1.getTabAt(0).setIcon(R.drawable.fire);
         tab1.getTabAt(1).setIcon(R.drawable.search);
         tab1.getTabAt(2).setIcon(R.drawable.user);
-        tab1.getTabAt(3).setIcon(R.drawable.add);
+        tab1.getTabAt(3).setIcon(R.drawable.recommended);
+        tab1.getTabAt(4).setIcon(R.drawable.add);
     }
 }

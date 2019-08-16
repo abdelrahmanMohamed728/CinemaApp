@@ -1,6 +1,7 @@
-package com.example.abdo.cinemaapp;
+package com.example.abdo.cinemaapp.Fragments;
 
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,13 +11,17 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.abdo.cinemaapp.Adapters.AddAdapter;
+import com.example.abdo.cinemaapp.FriendActivity;
 import com.example.abdo.cinemaapp.General.Friend;
+import com.example.abdo.cinemaapp.R;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,7 +45,7 @@ public class AddFragment extends Fragment {
     AddAdapter adapter;
     StorageReference storageReference;
     FirebaseStorage storage;
-
+    private FirebaseAuth mAuth;
     public AddFragment()
     {
         
@@ -56,9 +61,9 @@ public class AddFragment extends Fragment {
         storage = FirebaseStorage.getInstance();
          listView = v.findViewById(R.id.addListView);
          list = new ArrayList<>();
+        mAuth = FirebaseAuth.getInstance();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         storageReference = storage.getReference();
-
         final DatabaseReference myRef = database.getReference("Users");
          text.addTextChangedListener(new TextWatcher() {
              @Override
@@ -77,18 +82,19 @@ public class AddFragment extends Fragment {
                              ) {
                             final String name = snap.child("Username").getValue(String.class);
                              final String key =snap.getKey();
-                            if (name.contains(text.getText().toString()))
-                            {
-                                    StorageReference ref = storageReference.child("images/" + snap.getKey());
-                                    ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                        @Override
-                                        public void onSuccess(Uri uri) {
-                                            Friend f = new Friend(key, name, uri);
-                                            list.add(f);
-                                            adapter.notifyDataSetChanged();
-                                        }
-                                    });
-                            }
+                             if (!key.equals(mAuth.getCurrentUser().getUid())) {
+                                 if (name.contains(text.getText().toString())) {
+                                     StorageReference ref = storageReference.child("images/" + snap.getKey());
+                                     ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                         @Override
+                                         public void onSuccess(Uri uri) {
+                                             Friend f = new Friend(key, name, uri);
+                                             list.add(f);
+                                             adapter.notifyDataSetChanged();
+                                         }
+                                     });
+                                 }
+                             }
                         }
                         adapter = new AddAdapter(getContext(),list);
                         listView.setAdapter(adapter);
@@ -104,6 +110,15 @@ public class AddFragment extends Fragment {
              @Override
              public void afterTextChanged(Editable s) {
 
+             }
+         });
+         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+             @Override
+             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                 String d = list.get(position).getId();
+                 Intent intent = new Intent(getActivity(),FriendActivity.class);
+                 intent.putExtra("id",d);
+                 startActivity(intent);
              }
          });
         return v;
