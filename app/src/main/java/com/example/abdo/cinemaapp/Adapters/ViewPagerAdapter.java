@@ -9,6 +9,7 @@ import com.example.abdo.cinemaapp.Fragments.HomeFragment;
 import com.example.abdo.cinemaapp.Fragments.ProfileFragment;
 import com.example.abdo.cinemaapp.Fragments.RecommendFragment;
 import com.example.abdo.cinemaapp.Fragments.SearchFragment;
+import com.example.abdo.cinemaapp.Fragments.SettingsFragment;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     public ViewPagerAdapter(FragmentManager fm) {
@@ -27,12 +28,14 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
             return new RecommendFragment();
         else if (i==4)
             return new AddFragment();
+        else if (i==5)
+            return new SettingsFragment();
         else
             return null;
     }
 
     @Override
     public int getCount() {
-        return 5;
+        return 6;
     }
 }

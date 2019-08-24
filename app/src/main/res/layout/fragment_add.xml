@@ -19,7 +19,7 @@
         android:textColorHint="#bcb4d1"
         android:layout_height="wrap_content"
         android:id="@+id/addEditText"
-        android:hint="Add a friend"/>
+        android:hint="Search for a friend"/>
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

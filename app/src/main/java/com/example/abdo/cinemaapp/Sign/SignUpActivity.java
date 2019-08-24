@@ -1,6 +1,9 @@
 package com.example.abdo.cinemaapp.Sign;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +15,8 @@ import android.widget.Toast;
 import com.example.abdo.cinemaapp.MainActivity;
 import com.example.abdo.cinemaapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,6 +25,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
+
+import java.io.ByteArrayOutputStream;
 
 public class SignUpActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -45,7 +57,9 @@ public class SignUpActivity extends AppCompatActivity {
 
             }
         });
-
+      FirebaseStorage  storage = FirebaseStorage.getInstance();
+        StorageReference  storageReference = storage.getReference();
+        StorageReference ref = storageReference.child("images/"+mAuth.getCurrentUser().getUid());
     }
     private void SignUp(final String email, String password)
     {

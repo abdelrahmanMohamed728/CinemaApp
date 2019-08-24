@@ -73,11 +73,11 @@ public class AddFragment extends Fragment {
 
              @Override
              public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                 list = new ArrayList<>();
                 myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        list = new ArrayList<>();
+
                         for (  DataSnapshot snap:dataSnapshot.getChildren()
                              ) {
                             final String name = snap.child("Username").getValue(String.class);
@@ -85,14 +85,14 @@ public class AddFragment extends Fragment {
                              if (!key.equals(mAuth.getCurrentUser().getUid())) {
                                  if (name.contains(text.getText().toString())) {
                                      StorageReference ref = storageReference.child("images/" + snap.getKey());
-                                     ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                         @Override
-                                         public void onSuccess(Uri uri) {
-                                             Friend f = new Friend(key, name, uri);
-                                             list.add(f);
-                                             adapter.notifyDataSetChanged();
-                                         }
-                                     });
+                                         ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                             @Override
+                                             public void onSuccess(Uri uri) {
+                                                 Friend f = new Friend(key, name, uri);
+                                                 list.add(f);
+                                                 adapter.notifyDataSetChanged();
+                                             }
+                                         });
                                  }
                              }
                         }

@@ -15,6 +15,7 @@ public class SignActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign);
+
           SignIn = findViewById(R.id.SignInBtn1);
           SignUp = findViewById(R.id.SignUpBtn1);
           SignIn.setOnClickListener(new View.OnClickListener() {
