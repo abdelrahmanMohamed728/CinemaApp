@@ -62,7 +62,6 @@ public class FriendActivity extends AppCompatActivity {
         list=new ArrayList<>();
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        final String uid=   mAuth.getCurrentUser().getUid();
         DatabaseReference userReference = mDatabase.child("Users").child(id).child("Username");
         StorageReference ref = storageReference.child("images/"+id);
         ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -99,7 +98,7 @@ public class FriendActivity extends AppCompatActivity {
             }
         });
 
-        DatabaseReference reference= mDatabase.child("Users").child(uid).child("movies");
+        DatabaseReference reference= mDatabase.child("Users").child(id).child("movies");
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

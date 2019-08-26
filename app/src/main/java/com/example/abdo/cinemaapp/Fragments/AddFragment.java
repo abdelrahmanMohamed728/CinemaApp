@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,17 +81,19 @@ public class AddFragment extends Fragment {
 
                         for (  DataSnapshot snap:dataSnapshot.getChildren()
                              ) {
-                            final String name = snap.child("Username").getValue(String.class);
-                             final String key =snap.getKey();
+                             final String name = snap.child("Username").getValue(String.class);
+                               String key =snap.getKey();
                              if (!key.equals(mAuth.getCurrentUser().getUid())) {
+                                 final String k = key;
                                  if (name.contains(text.getText().toString())) {
                                      StorageReference ref = storageReference.child("images/" + snap.getKey());
                                          ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                              @Override
                                              public void onSuccess(Uri uri) {
-                                                 Friend f = new Friend(key, name, uri);
+                                                 Friend f = new Friend(k, name, uri);
                                                  list.add(f);
                                                  adapter.notifyDataSetChanged();
+                                                 Log.v("mytag",k);
                                              }
                                          });
                                  }
@@ -98,6 +101,7 @@ public class AddFragment extends Fragment {
                         }
                         adapter = new AddAdapter(getContext(),list);
                         listView.setAdapter(adapter);
+
                     }
 
                     @Override

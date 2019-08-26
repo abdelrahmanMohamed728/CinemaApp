@@ -57,9 +57,7 @@ public class SignUpActivity extends AppCompatActivity {
 
             }
         });
-      FirebaseStorage  storage = FirebaseStorage.getInstance();
-        StorageReference  storageReference = storage.getReference();
-        StorageReference ref = storageReference.child("images/"+mAuth.getCurrentUser().getUid());
+
     }
     private void SignUp(final String email, String password)
     {
@@ -75,7 +73,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                         } else {
                             // If sign in fails, display a message to the user.
-                            Toast.makeText(SignUpActivity.this, "Authentication failed.",
+                            Toast.makeText(SignUpActivity.this,task.getException().getMessage().toString() ,
                                     Toast.LENGTH_SHORT).show();
 
                         }
