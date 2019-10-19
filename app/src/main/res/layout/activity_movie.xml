@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MovieActivity"
-    android:background="@drawable/searchbackground"
+
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,9 +13,9 @@
         android:orientation="vertical">
     <ImageView
         android:layout_width="match_parent"
-        android:layout_marginHorizontal="10dp"
-        android:layout_height="150dp"
-        android:scaleType="fitCenter"
+
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
 
         android:id="@+id/MovieImage"/>
         <LinearLayout
@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textSize="25sp"
-                android:textColor="#fff"
+                android:textColor="#000"
                 android:text="aaaa"
                 android:foregroundGravity="right"
                 android:id="@+id/MovieName"/>
@@ -44,28 +44,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:textColor="#fff"
+            android:textColor="#000"
             android:layout_marginTop="10dp"
             android:id="@+id/MovieOverview"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:textColor="#fff"
+            android:textColor="#000"
             android:layout_marginTop="10dp"
             android:id="@+id/MovieGenre"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:textColor="#fff"
+            android:textColor="#000"
             android:layout_marginTop="10dp"
             android:id="@+id/MovieDate"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:textColor="#fff"
+            android:textColor="#000"
             android:id="@+id/MovieRevenue"
             android:layout_marginTop="10dp"/>
         <TextView
@@ -73,14 +73,14 @@
             android:layout_height="wrap_content"
             android:id="@+id/MovieLength"
             android:textSize="20sp"
-            android:textColor="#fff"
+            android:textColor="#000"
             android:layout_marginTop="10dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/MovieRating"
             android:textSize="20sp"
-            android:textColor="#fff"
+            android:textColor="#000"
             android:layout_marginTop="10dp"/>
     </LinearLayout>
 </ScrollView>

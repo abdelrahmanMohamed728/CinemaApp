@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.SearchFragment"
-    android:background="@drawable/searchbackground"
+
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/searchtext"
             android:textSize="20sp"
-            android:textColor="#fff"
+            android:textColor="#000"
             android:textColorHint="#bcb4d1"
             android:layout_height="match_parent"
             android:id="@+id/searchEditText"

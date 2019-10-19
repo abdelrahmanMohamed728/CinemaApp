@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/searchbackground"
+
     tools:context=".Fragments.AddFragment">
     <EditText
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/searchtext"
         android:textSize="20sp"
-        android:textColor="#fff"
+        android:textColor="#000"
         android:textColorHint="#bcb4d1"
         android:layout_height="wrap_content"
         android:id="@+id/addEditText"
