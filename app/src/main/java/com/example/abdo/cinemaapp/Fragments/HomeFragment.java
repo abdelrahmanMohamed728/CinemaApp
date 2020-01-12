@@ -17,7 +17,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.abdo.cinemaapp.Adapters.TrendAdapter;
-import com.example.abdo.cinemaapp.General.Trend;
+import com.example.abdo.cinemaapp.Model.Trend;
 import com.example.abdo.cinemaapp.R;
 
 import org.json.JSONArray;
@@ -79,7 +79,7 @@ public class HomeFragment extends Fragment {
                     for (int i =0;i<5;i++)
                     {
                         JSONObject object = array.getJSONObject(i);
-                        Trend movieTrend = new Trend(object.getString("id"),"https://image.tmdb.org/t/p/w200"+object.getString("profile_path"),"movie");
+                        Trend movieTrend = new Trend(object.getString("id"),"https://image.tmdb.org/t/p/w200"+object.getString("profile_path"),"person");
                         personArrayList.add(movieTrend);
                         personTrendAdapter.notifyDataSetChanged();
                     }

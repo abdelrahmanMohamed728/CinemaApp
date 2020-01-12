@@ -15,11 +15,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.abdo.cinemaapp.Adapters.AddAdapter;
 import com.example.abdo.cinemaapp.FriendActivity;
-import com.example.abdo.cinemaapp.General.Friend;
+import com.example.abdo.cinemaapp.Model.Friend;
 import com.example.abdo.cinemaapp.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,7 +29,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;

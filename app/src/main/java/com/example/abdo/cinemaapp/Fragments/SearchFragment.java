@@ -11,11 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -24,14 +21,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.abdo.cinemaapp.Adapters.SearchAdapter;
-import com.example.abdo.cinemaapp.General.Favorite;
-import com.example.abdo.cinemaapp.General.Search;
-import com.example.abdo.cinemaapp.General.Trend;
+import com.example.abdo.cinemaapp.Model.Search;
 import com.example.abdo.cinemaapp.MovieActivity;
 import com.example.abdo.cinemaapp.R;
 import com.example.abdo.cinemaapp.TvShowActivity;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

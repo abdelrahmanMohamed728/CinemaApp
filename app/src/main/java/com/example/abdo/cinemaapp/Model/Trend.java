@@ -1,4 +1,4 @@
-package com.example.abdo.cinemaapp.General;
+package com.example.abdo.cinemaapp.Model;
 
 import com.google.gson.annotations.SerializedName;
 

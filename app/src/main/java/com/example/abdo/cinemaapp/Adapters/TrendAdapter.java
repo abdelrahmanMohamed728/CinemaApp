@@ -11,7 +11,7 @@ import android.widget.ImageView;
 
 import com.example.abdo.cinemaapp.MovieActivity;
 import com.example.abdo.cinemaapp.R;
-import com.example.abdo.cinemaapp.General.Trend;
+import com.example.abdo.cinemaapp.Model.Trend;
 import com.example.abdo.cinemaapp.TvShowActivity;
 import com.squareup.picasso.Picasso;
 

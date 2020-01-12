@@ -10,8 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.abdo.cinemaapp.General.Favorite;
-import com.example.abdo.cinemaapp.General.Search;
+import com.example.abdo.cinemaapp.Model.Favorite;
 import com.example.abdo.cinemaapp.R;
 import com.squareup.picasso.Picasso;
 

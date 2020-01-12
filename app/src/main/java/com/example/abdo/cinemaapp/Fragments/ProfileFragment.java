@@ -24,11 +24,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 import com.example.abdo.cinemaapp.Adapters.FavoriteAdapter;
-import com.example.abdo.cinemaapp.Adapters.SearchAdapter;
-import com.example.abdo.cinemaapp.General.Favorite;
-import com.example.abdo.cinemaapp.General.Search;
+import com.example.abdo.cinemaapp.Model.Favorite;
 import com.example.abdo.cinemaapp.MovieActivity;
 import com.example.abdo.cinemaapp.R;
 import com.example.abdo.cinemaapp.TvShowActivity;
@@ -46,7 +43,6 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;

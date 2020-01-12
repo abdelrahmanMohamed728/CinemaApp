@@ -1,11 +1,16 @@
 package com.example.abdo.cinemaapp;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -20,7 +25,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -28,6 +35,7 @@ import org.json.JSONObject;
 public class TvShowActivity extends AppCompatActivity {
     TextView name,overview,seasons,episodes,date,genre,rating;
     ImageView img1;
+    ScrollView linearLayout;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
     ImageView like;
@@ -36,6 +44,7 @@ public class TvShowActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tv_show);
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        linearLayout = findViewById(R.id.a);
         name = findViewById(R.id.ShowName);
         like = findViewById(R.id.showLikeImage);
         overview = findViewById(R.id.ShowOverview);
@@ -46,7 +55,6 @@ public class TvShowActivity extends AppCompatActivity {
         genre = findViewById(R.id.ShowGenre);
         rating = findViewById(R.id.ShowRating);
         final String id = getIntent().getStringExtra("id");
-        img1 = findViewById(R.id.ShowImage);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         final String uid=   mAuth.getCurrentUser().getUid();
         like.setOnClickListener(new View.OnClickListener() {
@@ -115,7 +123,19 @@ public class TvShowActivity extends AppCompatActivity {
                     episodes.setText("Number of Episodes : "+response.getString("number_of_episodes"));
                     name.setText(response.getString("name"));
                     rating.setText("Rating : "+response.getString("vote_average"));
-                    Picasso.with(TvShowActivity.this).load("https://image.tmdb.org/t/p/w500"+response.getString("poster_path")).into(img1);
+                    final ImageView img = new ImageView(TvShowActivity.this);
+                    Picasso.with(TvShowActivity.this).load("https://image.tmdb.org/t/p/original"+response.getString("poster_path")).into(img, new Callback() {
+                        @Override
+                        public void onSuccess() {
+                            linearLayout.setBackground(img.getDrawable());
+                            linearLayout.getBackground().setAlpha(35);
+                        }
+
+                        @Override
+                        public void onError() {
+
+                        }
+                    });
                 }
                 catch (Exception e)
                 {

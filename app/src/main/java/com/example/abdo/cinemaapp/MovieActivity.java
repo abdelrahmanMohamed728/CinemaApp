@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -30,6 +32,7 @@ import org.json.JSONObject;
 public class MovieActivity extends AppCompatActivity {
    TextView name,overview,length,revenue,date,genre,rating;
    ImageView img1;
+   ScrollView linear;
    ImageView like;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
@@ -38,6 +41,7 @@ public class MovieActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
         like = findViewById(R.id.movieLikeImage);
+        linear = findViewById(R.id.movieLinear);
         name = findViewById(R.id.MovieName);
         overview = findViewById(R.id.MovieOverview);
         length = findViewById(R.id.MovieLength);
@@ -78,7 +82,6 @@ public class MovieActivity extends AppCompatActivity {
 
             }
         });
-        img1 = findViewById(R.id.MovieImage);
         DatabaseReference reference= mDatabase.child("Users").child(uid).child("movies");
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -120,7 +123,19 @@ public class MovieActivity extends AppCompatActivity {
                    revenue.setText("Revenue : "+response.getString("revenue")+"$");
                    name.setText(response.getString("original_title"));
                    rating.setText("Movie Rating : "+response.getString("vote_average"));
-                    Picasso.with(MovieActivity.this).load("https://image.tmdb.org/t/p/w500"+response.getString("poster_path")).into(img1);
+                    final ImageView img = new ImageView(MovieActivity.this);
+                    Picasso.with(MovieActivity.this).load("https://image.tmdb.org/t/p/original"+response.getString("poster_path")).into(img, new Callback() {
+                        @Override
+                        public void onSuccess() {
+                            linear.setBackground(img.getDrawable());
+                            linear.getBackground().setAlpha(35);
+                        }
+
+                        @Override
+                        public void onError() {
+
+                        }
+                    });
                 }
                 catch (Exception e)
                 {
