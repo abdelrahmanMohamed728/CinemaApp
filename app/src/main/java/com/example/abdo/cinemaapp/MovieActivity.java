@@ -41,6 +41,7 @@ public class MovieActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
         like = findViewById(R.id.movieLikeImage);
+        img1 = findViewById(R.id.movieImage);
         linear = findViewById(R.id.movieLinear);
         name = findViewById(R.id.MovieName);
         overview = findViewById(R.id.MovieOverview);
@@ -123,19 +124,7 @@ public class MovieActivity extends AppCompatActivity {
                    revenue.setText("Revenue : "+response.getString("revenue")+"$");
                    name.setText(response.getString("original_title"));
                    rating.setText("Movie Rating : "+response.getString("vote_average"));
-                    final ImageView img = new ImageView(MovieActivity.this);
-                    Picasso.with(MovieActivity.this).load("https://image.tmdb.org/t/p/original"+response.getString("poster_path")).into(img, new Callback() {
-                        @Override
-                        public void onSuccess() {
-                            linear.setBackground(img.getDrawable());
-                            linear.getBackground().setAlpha(35);
-                        }
-
-                        @Override
-                        public void onError() {
-
-                        }
-                    });
+                   Picasso.with(MovieActivity.this).load("https://image.tmdb.org/t/p/original"+response.getString("poster_path")).into(img1);
                 }
                 catch (Exception e)
                 {

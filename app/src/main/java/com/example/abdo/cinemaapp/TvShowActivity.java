@@ -44,6 +44,7 @@ public class TvShowActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tv_show);
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        img1 = findViewById(R.id.tvShowImag);
         linearLayout = findViewById(R.id.a);
         name = findViewById(R.id.ShowName);
         like = findViewById(R.id.showLikeImage);
@@ -123,19 +124,7 @@ public class TvShowActivity extends AppCompatActivity {
                     episodes.setText("Number of Episodes : "+response.getString("number_of_episodes"));
                     name.setText(response.getString("name"));
                     rating.setText("Rating : "+response.getString("vote_average"));
-                    final ImageView img = new ImageView(TvShowActivity.this);
-                    Picasso.with(TvShowActivity.this).load("https://image.tmdb.org/t/p/original"+response.getString("poster_path")).into(img, new Callback() {
-                        @Override
-                        public void onSuccess() {
-                            linearLayout.setBackground(img.getDrawable());
-                            linearLayout.getBackground().setAlpha(35);
-                        }
-
-                        @Override
-                        public void onError() {
-
-                        }
-                    });
+                    Picasso.with(TvShowActivity.this).load("https://image.tmdb.org/t/p/original"+response.getString("poster_path")).into(img1);
                 }
                 catch (Exception e)
                 {
